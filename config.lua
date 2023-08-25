@@ -32,6 +32,7 @@ lvim.leader                    = "space"
 
 -- ---------- insert mode ---------- ---
 lvim.keys.insert_mode["jj"]    = "<ESC>"
+lvim.keys.insert_mode["<C-a>"] = "<Home>"
 lvim.keys.insert_mode["<C-e>"] = "<End>"
 lvim.keys.insert_mode["<C-h>"] = "<Left>"
 lvim.keys.insert_mode["<C-l>"] = "<Right>"
@@ -49,39 +50,14 @@ lvim.keys.visual_mode["H"]     = "^"
 lvim.keys.visual_mode["L"]     = "g_"
 
 
--- remove the builtin which_key maps
-lvim.builtin.which_key.mappings.f    = nil
-lvim.builtin.which_key.mappings.s    = nil
-lvim.builtin.which_key.mappings.d    = nil
-lvim.builtin.which_key.mappings.w    = nil
-lvim.builtin.which_key.mappings.h    = nil
-lvim.builtin.which_key.mappings.h    = nil
-lvim.builtin.which_key.mappings.b    = nil
-lvim.builtin.which_key.mappings.T    = nil
-lvim.builtin.which_key.mappings.d    = nil
-
 -- ---------- normal mode ---------- ---
--- windows
-lvim.builtin.which_key.mappings["w"] = {
-  name = "Windows",
-  v = {
-    "<C-w>v", "New Windows vertical"
-  },
-  h = {
-    "<C-w>s", "New Windows horizontal"
-  },
-  e = {
-    ":WinResizerStartResize<CR>", "Resize Windows"
-  },
-}
--- lvim.keys.normal_mode["<leader>wv"]  = "<C-w>v"
--- lvim.keys.normal_mode["<leader>wh"]  = "<C-w>s"
-lvim.keys.normal_mode["<C-l>"]       = "<C-w>l"
-lvim.keys.normal_mode["<C-h>"]       = "<C-w>h"
-lvim.keys.normal_mode["<C-j>"]       = "<C-w>j"
-lvim.keys.normal_mode["<C-k>"]       = "<C-w>k"
-lvim.keys.normal_mode["{"]           = ":BufferLineCyclePrev<CR>"
-lvim.keys.normal_mode["}"]           = ":BufferLineCycleNext<CR>"
+lvim.keys.normal_mode["<C-l>"] = "<cmd>wincmd l<CR>"
+lvim.keys.normal_mode["<C-h>"] = "<cmd>wincmd h<CR>"
+lvim.keys.normal_mode["<C-j>"] = "<cmd>wincmd j<CR>"
+lvim.keys.normal_mode["<C-k>"] = "<cmd>wincmd k<CR>"
+lvim.keys.normal_mode["{"]     = "<cmd>BufferLineCyclePrev<CR>"
+lvim.keys.normal_mode["}"]     = "<cmd>BufferLineCycleNext<CR>"
+lvim.keys.normal_mode["<C-w>"] = "<cmd>bd<CR>"
 
 
 -- move
@@ -102,13 +78,36 @@ vim.keymap.set("o", "L", "g_")
 -- lvim.keys.operator_pending_mode["H"]             = "^"
 -- lvim.keys.operator_pending_mode["L"]             = "g_"
 
+-- remove the builtin which_key maps
+lvim.builtin.which_key.mappings.f          = nil
+lvim.builtin.which_key.mappings.s          = nil
+lvim.builtin.which_key.mappings.d          = nil
+lvim.builtin.which_key.mappings.w          = nil
+lvim.builtin.which_key.mappings.h          = nil
+lvim.builtin.which_key.mappings.h          = nil
+lvim.builtin.which_key.mappings.b          = nil
+lvim.builtin.which_key.mappings.T          = nil
+lvim.builtin.which_key.mappings.d          = nil
+
+-- windows
+lvim.builtin.which_key.mappings["w"]       = {
+  name = "Windows",
+  v = {
+    "<cmd>wincmd v<CR>", "New Windows vertical"
+  },
+  h = {
+    "<cmd>wincmd s<CR>", "New Windows horizontal"
+  },
+  e = {
+    ":WinResizerStartResize<CR>", "Resize Windows"
+  },
+}
 
 -- lsp
 -- lvim.keys.normal_mode["<leader>in"]                   = ":lua vim.lsp.buf.incoming_calls()<cr>"
 lvim.lsp.buffer_mappings.normal_mode['K']  = nil
 lvim.lsp.buffer_mappings.normal_mode['gh'] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Show hover" }
 lvim.keys.visual_mode["<leader>lf"]        = "<ESC><cmd>lua vim.lsp.buf.range_formatting()<CR>"
-lvim.keys.normal_mode["<leader>ln"]        = "<cmd>lua vim.lsp.buf.rename()<CR>"
 
 -- rm lvim/config.lua gr shortcut first
 lvim.keys.term_mode["<C-h>"]               = false
